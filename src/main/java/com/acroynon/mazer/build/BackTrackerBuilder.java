@@ -1,30 +1,33 @@
-package com.acroynon.mazer.core;
+package com.acroynon.mazer.build;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import com.acroynon.mazer.model.Maze;
-import com.acroynon.mazer.util.MathUtil;
+import com.acroynon.mazer.build.service.MazeBuilder;
+import com.acroynon.mazer.common.math.MathUtil;
+import com.acroynon.mazer.common.math.Vector2D;
+import com.acroynon.mazer.common.model.Maze;
+import com.acroynon.mazer.common.model.MazeBlock;
 
-public class MazeBuilder {
-	
+public class BackTrackerBuilder implements MazeBuilder{
+
 	private Maze maze;	
 	private List<Vector2D> visited;
 	private List<Vector2D> path;
 	
-	public MazeBuilder(){
+	public BackTrackerBuilder(){
 		visited = new ArrayList<>();
 		path = new ArrayList<>();
 	}
 	
+	@Override
 	public void build(Maze maze){
 		this.maze = maze;
 		path.add(new Vector2D(1, 1));
 		while(path.size() > 0){
 			Vector2D position = path.get(0);
 			visited.add(position);
-			maze.setValue(position, 1);
+			maze.setValue(position, MazeBlock.PATH);
 			List<Vector2D> neighbours = getValidNeighbours(position);
 			if(neighbours.size() == 0){
 				path.remove(0);
@@ -36,8 +39,8 @@ public class MazeBuilder {
 		}
 		List<Vector2D> validStartPositions = getValidStartPositions();
 		List<Vector2D> validEndPositions = getValidEndPositions();
-		maze.setValue(validStartPositions.get(MathUtil.randomIntBetween(0, validStartPositions.size())), 1);
-		maze.setValue(validEndPositions.get(MathUtil.randomIntBetween(0, validEndPositions.size())), 1);
+		maze.setValue(validStartPositions.get(MathUtil.randomIntBetween(0, validStartPositions.size())), MazeBlock.PATH);
+		maze.setValue(validEndPositions.get(MathUtil.randomIntBetween(0, validEndPositions.size())), MazeBlock.PATH);
 	}
 	
 	private List<Vector2D> getValidNeighbours(Vector2D position){
@@ -136,7 +139,7 @@ public class MazeBuilder {
 	public List<Vector2D> getValidStartPositions(){
 		List<Vector2D> valid = new ArrayList<>();
 		for(int x = 1; x<maze.getWidth() - 2; x++){
-			if(maze.getValue(new Vector2D(x, 1)) == 1){
+			if(maze.getValue(new Vector2D(x, 1)) == MazeBlock.PATH){
 				valid.add(new Vector2D(x, 0));
 			}
 		}
@@ -146,11 +149,10 @@ public class MazeBuilder {
 	public List<Vector2D> getValidEndPositions(){
 		List<Vector2D> valid = new ArrayList<>();
 		for(int x = 1; x<maze.getWidth() - 2; x++){
-			if(maze.getValue(new Vector2D(x, maze.getHeight() - 2)) == 1){
+			if(maze.getValue(new Vector2D(x, maze.getHeight() - 2)) == MazeBlock.PATH){
 				valid.add(new Vector2D(x, maze.getHeight() - 1));
 			}
 		}
 		return valid;
 	}
-
 }

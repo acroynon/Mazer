@@ -1,4 +1,4 @@
-package com.acroynon.mazer.io;
+package com.acroynon.mazer.common.file;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -8,32 +8,25 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.acroynon.mazer.core.Vector2D;
-import com.acroynon.mazer.model.Maze;
+import com.acroynon.mazer.common.math.Vector2D;
+import com.acroynon.mazer.common.model.Maze;
+import com.acroynon.mazer.common.model.MazeBlock;
 
 public class ImageCreator {
-
-	private String filename;
-	private Maze maze;
 	
-	public ImageCreator(String filename, Maze maze){
-		 this.filename = filename;
-		 this.maze = maze;
+	public boolean saveFile(Maze maze, String filename){
+		BufferedImage bi = createBufferedImage(maze);
+        drawMaze(maze, bi);                
+        return writeFile(bi, filename);
 	}
 	
-	public boolean saveFile(){
-		BufferedImage bi = createBufferedImage();
-        drawMaze(bi);                
-        return writeFile(bi);
-	}
-	
-	private BufferedImage createBufferedImage(){
+	private BufferedImage createBufferedImage(Maze maze){
 		int width = maze.getWidth();
 		int height = maze.getHeight();
 		return new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 	}
 	
-	private boolean writeFile(BufferedImage bufferedImage){
+	private boolean writeFile(BufferedImage bufferedImage, String filename){
 		boolean result = true;
 		File file = new File(filename + ".png");
 		try {
@@ -45,12 +38,12 @@ public class ImageCreator {
 		return result;
 	}
 	
-	private void drawMaze(BufferedImage bufferedImage){
+	private void drawMaze(Maze maze, BufferedImage bufferedImage){
 		Graphics2D g = bufferedImage.createGraphics();
 		for(int x=0; x<maze.getWidth(); x++){
 			for(int y=0; y<maze.getHeight(); y++){
-				int val = maze.getValue(new Vector2D(x, y));
-				Color c = (val==0?Color.WHITE:Color.BLACK);
+				MazeBlock val = maze.getValue(new Vector2D(x, y));
+				Color c = val.color;
 				g.setColor(c);
 				g.fillRect(x, y, 1, 1);
 			}

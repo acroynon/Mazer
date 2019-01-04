@@ -1,4 +1,4 @@
-package com.acroynon.mazer.core;
+package com.acroynon.mazer.common.math;
 
 public class Vector2D {
 

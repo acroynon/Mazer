@@ -1,4 +1,4 @@
-package com.acroynon.mazer.util;
+package com.acroynon.mazer.common.math;
 
 import java.util.Random;
 
