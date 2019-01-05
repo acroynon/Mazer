@@ -20,7 +20,6 @@ public class BackTrackerBuilder implements MazeBuilder{
 		path = new ArrayList<>();
 	}
 	
-	//TODO: something needs doing
 	@Override
 	public void build(Maze maze){
 		this.maze = maze;
