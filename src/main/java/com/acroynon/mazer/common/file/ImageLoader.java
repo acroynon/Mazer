@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 public class ImageLoader {
 
+	// load a bufferedimage from an image file
 	public BufferedImage loadImage(String filename){
 		BufferedImage image;
 		try {

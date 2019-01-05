@@ -15,6 +15,7 @@ public class MazeLoader {
 		this.graphicsLoader = graphicsLoader;
 	}
 	
+	// create a maze from a buggered image
 	public Maze loadMaze(String filename){
 		BufferedImage bi = graphicsLoader.loadImage(filename);
 		int width = bi.getWidth();

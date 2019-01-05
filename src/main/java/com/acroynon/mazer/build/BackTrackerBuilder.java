@@ -29,16 +29,20 @@ public class BackTrackerBuilder implements MazeBuilder{
 			visited.add(position);
 			maze.setValue(position, MazeBlock.PATH);
 			List<Vector2D> neighbours = getValidNeighbours(position);
+			// if no neighbours, go back
 			if(neighbours.size() == 0){
 				path.remove(0);
 			}else{
+				// pick a random neighbour
 				int r = MathUtil.randomIntBetween(0, neighbours.size());
 				Vector2D next = neighbours.get(r);
 				path.add(0, next);
 			}
 		}
+		// find locations that could be a start or end (at top and bottom of picture)
 		List<Vector2D> validStartPositions = getValidStartPositions();
 		List<Vector2D> validEndPositions = getValidEndPositions();
+		// pick random start and end location from lists
 		maze.setValue(validStartPositions.get(MathUtil.randomIntBetween(0, validStartPositions.size())), MazeBlock.PATH);
 		maze.setValue(validEndPositions.get(MathUtil.randomIntBetween(0, validEndPositions.size())), MazeBlock.PATH);
 	}
@@ -47,6 +51,7 @@ public class BackTrackerBuilder implements MazeBuilder{
 		List<Vector2D> neighbours = getNeighbours(position);
 		List<Vector2D> valid = new ArrayList<>();
 		for(Vector2D v : neighbours){
+			// out of bounds
 			if(v.getX() <= 0 || v.getX() >= maze.getHeight() - 1 ||
 					v.getY() <= 0 || v.getY() >= maze.getWidth() - 1){
 				continue;
@@ -98,19 +103,19 @@ public class BackTrackerBuilder implements MazeBuilder{
 			return false;
 		}
 		
-		// /
+		// / (divisble squares visited)
 		if(isVisited(topRight, botLeft)){
 			return false;
 		}
-		// \
+		// \ (divisble squares visited)
 		if(isVisited(topLeft, botRight)){
 			return false;
 		}
-		// -
+		// - (divisble squares visited)
 		if(isVisited(midLeft, midRight)){
 			return false;
 		}
-		// |
+		// | (divisble squares visited)
 		if(isVisited(topMid, botMid)){
 			return false;
 		}

@@ -14,18 +14,21 @@ import com.acroynon.mazer.common.model.MazeBlock;
 
 public class ImageCreator {
 	
+	// save a maze to a file
 	public boolean saveFile(Maze maze, String filename){
 		BufferedImage bi = createBufferedImage(maze);
         drawMaze(maze, bi);                
         return writeFile(bi, filename);
 	}
 	
+	// create a buffered image the same dimensions of a maze
 	private BufferedImage createBufferedImage(Maze maze){
 		int width = maze.getWidth();
 		int height = maze.getHeight();
 		return new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 	}
 	
+	// write buffered image to a file
 	private boolean writeFile(BufferedImage bufferedImage, String filename){
 		boolean result = true;
 		File file = new File(filename + ".png");
@@ -38,6 +41,7 @@ public class ImageCreator {
 		return result;
 	}
 	
+	// draw maze to buffered image
 	private void drawMaze(Maze maze, BufferedImage bufferedImage){
 		Graphics2D g = bufferedImage.createGraphics();
 		for(int x=0; x<maze.getWidth(); x++){
