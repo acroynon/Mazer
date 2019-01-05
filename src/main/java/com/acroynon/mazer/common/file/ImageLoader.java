@@ -12,7 +12,7 @@ public class ImageLoader {
 	public BufferedImage loadImage(String filename){
 		BufferedImage image;
 		try {
-			image = ImageIO.read(new File(filename));
+			image = ImageIO.read(new File(filename + ".png"));
 			return image;
 		} catch (IOException e) {
 			e.printStackTrace();
