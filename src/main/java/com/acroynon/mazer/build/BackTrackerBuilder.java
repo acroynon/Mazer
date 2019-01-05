@@ -20,6 +20,7 @@ public class BackTrackerBuilder implements MazeBuilder{
 		path = new ArrayList<>();
 	}
 	
+	//TODO: something needs doing
 	@Override
 	public void build(Maze maze){
 		this.maze = maze;
@@ -60,10 +61,10 @@ public class BackTrackerBuilder implements MazeBuilder{
 	
 	private List<Vector2D> getNeighbours(Vector2D position){
 		List<Vector2D> neighbours = new ArrayList<>();
-		neighbours.add(new Vector2D(position.getX() + 1, position.getY()));
-		neighbours.add(new Vector2D(position.getX() - 1, position.getY()));
-		neighbours.add(new Vector2D(position.getX(), position.getY() + 1));
-		neighbours.add(new Vector2D(position.getX(), position.getY() - 1));
+		neighbours.add(position.add(new Vector2D(1, 0)));
+		neighbours.add(position.add(new Vector2D(-1, 0)));
+		neighbours.add(position.add(new Vector2D(0, 1)));
+		neighbours.add(position.add(new Vector2D(0, -1)));
 		return neighbours;
 	}	
 	
