@@ -10,11 +10,11 @@ Then reads back in that image file, and solves the maze using a specified algori
 
 An example of a generated maze
 
-![alt text](img\maze.png)
+![Generated Maze](img/maze.png?raw=true "Maze")
 
 An example of a solved maze using A*
 
-![alt text](img\solved-maze.png)
+![Solved Maze](img/solved-maze.png?raw=true "Solved Maze")
 
 
 ## Application.properties
