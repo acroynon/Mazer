@@ -1,4 +1,4 @@
-package com.acroynon.mazer.common.file;
+package com.acroynon.mazer.build.file;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

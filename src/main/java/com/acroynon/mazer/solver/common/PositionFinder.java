@@ -1,4 +1,4 @@
-package com.acroynon.mazer.solver;
+package com.acroynon.mazer.solver.common;
 
 import com.acroynon.mazer.common.math.Vector2D;
 import com.acroynon.mazer.common.model.Maze;

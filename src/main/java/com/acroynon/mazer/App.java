@@ -3,15 +3,16 @@ package com.acroynon.mazer;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import com.acroynon.mazer.build.BackTrackerBuilder;
+import com.acroynon.mazer.build.file.ImageCreator;
+import com.acroynon.mazer.build.impl.BackTrackerBuilder;
 import com.acroynon.mazer.build.service.MazeBuilder;
-import com.acroynon.mazer.common.file.ImageCreator;
-import com.acroynon.mazer.common.file.ImageLoader;
-import com.acroynon.mazer.common.file.MazeLoader;
 import com.acroynon.mazer.common.file.PropertyManager;
 import com.acroynon.mazer.common.model.Maze;
-import com.acroynon.mazer.solver.RandomWalkSolver;
-import com.acroynon.mazer.solver.TurnLeftSolver;
+import com.acroynon.mazer.solver.file.ImageLoader;
+import com.acroynon.mazer.solver.file.MazeLoader;
+import com.acroynon.mazer.solver.impl.AStarSolver;
+import com.acroynon.mazer.solver.impl.RandomWalkSolver;
+import com.acroynon.mazer.solver.impl.TurnLeftSolver;
 import com.acroynon.mazer.solver.service.MazeSolver;
 
 public class App 
@@ -63,8 +64,11 @@ public class App
     		case "turnleft":
     			solver = new TurnLeftSolver();
     			break;
-    		case "randomwalker":
+    		case "randomwalk":
     			solver = new RandomWalkSolver();
+    			break;
+    		case "astar":
+    			solver = new AStarSolver();
     			break;
     		default:
     			solver = new TurnLeftSolver();

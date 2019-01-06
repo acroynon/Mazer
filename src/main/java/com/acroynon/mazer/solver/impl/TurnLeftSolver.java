@@ -1,4 +1,4 @@
-package com.acroynon.mazer.solver;
+package com.acroynon.mazer.solver.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import com.acroynon.mazer.common.math.Vector2D;
 import com.acroynon.mazer.common.model.Maze;
 import com.acroynon.mazer.common.model.MazeBlock;
+import com.acroynon.mazer.solver.common.PositionFinder;
 import com.acroynon.mazer.solver.service.MazeSolver;
 
 public class TurnLeftSolver implements MazeSolver{

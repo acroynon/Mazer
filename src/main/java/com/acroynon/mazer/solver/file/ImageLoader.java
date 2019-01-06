@@ -1,4 +1,4 @@
-package com.acroynon.mazer.common.file;
+package com.acroynon.mazer.solver.file;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
